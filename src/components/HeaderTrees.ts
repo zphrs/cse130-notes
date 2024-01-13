@@ -12,7 +12,7 @@ export function headersToTree(
   const stack: Tree[] = [
     {
       text: title,
-      slug: "#title",
+      slug: "",
       depth: 1,
       children: [],
     },

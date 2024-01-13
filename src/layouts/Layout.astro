@@ -58,7 +58,6 @@ const { title } = Astro.props
             event.direction = "back"
             break
           default:
-            return
             break
         }
       })
@@ -174,6 +173,12 @@ const { title } = Astro.props
         background-color: var(--gray-5);
         color: var(--gray-95);
         padding: 1rem;
+      }
+      :target {
+        padding: 1rem 0.5rem;
+        background-color: var(--seafoam-10);
+        outline: 1px solid currentColor;
+        border-radius: 0.25rem;
       }
     </style>
   </body>
