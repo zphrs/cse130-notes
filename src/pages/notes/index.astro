@@ -1,0 +1,35 @@
+---
+import { getCollection } from "astro:content"
+import Layout from "../../layouts/Layout.astro"
+const allPosts = await getCollection("notes")
+import { headersToTree } from "../../components/HeaderTrees"
+import HeaderTree from "../../components/HeaderTree.astro"
+---
+
+<Layout title='All Notes'>
+  <h1>All Notes</h1>
+  <ul class='headings'>
+    {
+      allPosts.map(async post => {
+        const { headings } = await post.render()
+        return (
+          <HeaderTree
+            tree={headersToTree(headings, post.data.title)}
+            postSlug={post.slug}
+          />
+        )
+      })
+    }
+  </ul>
+</Layout>
+
+<style>
+  .headings {
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding-left: 1rem;
+    min-width: min-content;
+  }
+</style>
