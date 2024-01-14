@@ -2,18 +2,21 @@ export type Tree = {
   text: string
   slug: string
   depth: number
+  blurb: string
   children: Tree[]
 }
 
 export function headersToTree(
   headings: { text: string; slug: string; depth: number }[],
-  title: string
+  title: string,
+  blurbs: string[]
 ): Tree {
   const stack: Tree[] = [
     {
       text: title,
       slug: "",
       depth: 1,
+      blurb: "",
       children: [],
     },
   ]
@@ -21,6 +24,7 @@ export function headersToTree(
   for (let i = 0; i < headings.length; i++) {
     const node = {
       ...headings[i],
+      blurb: blurbs[i],
       children: [],
     }
     if (node.depth > top().depth) {

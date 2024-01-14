@@ -1,4 +1,5 @@
 ---
+import HeaderPreview from "./HeaderPreview.astro"
 import type { Tree } from "./HeaderTrees"
 
 interface Props {
@@ -11,13 +12,25 @@ const { tree, postSlug } = Astro.props
 {
   tree.children.length === 0 ? (
     <li class={`depth-${tree.depth}`}>
-      <a href={`/notes/${postSlug}/#${tree.slug}`}>{tree.text}</a>
+      <HeaderPreview
+        title={tree.text}
+        href={`/notes/${postSlug}/#${tree.slug}`}
+        desc={tree.blurb}
+      >
+        {tree.text}
+      </HeaderPreview>
     </li>
   ) : (
     <li class={`depth-${tree.depth}`}>
       <details open>
         <summary>
-          <a href={`/notes/${postSlug}/#${tree.slug}`}>{tree.text}</a>
+          <HeaderPreview
+            title={tree.text}
+            href={`/notes/${postSlug}/#${tree.slug}`}
+            desc={tree.blurb}
+          >
+            {tree.text}
+          </HeaderPreview>
         </summary>
         <ul>
           {tree.children.map(child => {
@@ -61,15 +74,41 @@ const { tree, postSlug } = Astro.props
     border: 1px solid var(--seafoam-50);
     border-radius: 0.25rem;
   }
-  li:has(ul) > details[open] > summary > a {
-    border-radius: 0.25rem 0.25rem 0 0;
-    border-bottom: none;
-  }
   li {
     border-radius: 0.25rem;
   }
   ul {
     border-radius: 0.25rem;
+  }
+  li:has(ul) > details[open] > summary > a {
+    border-radius: 0.25rem 0.25rem 0 0;
+    border-bottom: none;
+  }
+  li.depth-1 > details[open] > summary > a {
+    background-color: var(--seafoam-10);
+  }
+  li.depth-2 > details[open] > summary > a {
+    background-color: var(--seafoam-20);
+  }
+  li.depth-3 > details[open] > summary > a {
+    background-color: var(--seafoam-30);
+  }
+  li.depth-4 > details[open] > summary > a {
+    background-color: var(--seafoam-40);
+  }
+
+  li:has(ul) {
+    flex: 1;
+  }
+  li.depth-1 a {
+    color: var(--violet-90);
+  }
+</style>
+
+<style is:global>
+  li:has(ul) > details[open] > summary > a {
+    border-radius: 0.25rem 0.25rem 0 0;
+    border-bottom: none;
   }
   li.depth-1 > details[open] > summary > a {
     background-color: var(--seafoam-10);
@@ -84,12 +123,7 @@ const { tree, postSlug } = Astro.props
     background-color: var(--seafoam-40);
   }
   li a {
+    display: inline-block;
     background-color: var(--seafoam-40);
-  }
-  li:has(ul) {
-    flex: 1;
-  }
-  li.depth-1 a {
-    color: var(--violet-90);
   }
 </style>

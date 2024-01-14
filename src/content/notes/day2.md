@@ -41,7 +41,7 @@ If the system has to do the same with fewer resources then it becomes more compl
 
 ### Law of Diminishing Returns
 
-The better the system gets the future potential gains get harder
+The better the system gets the harder future potential gains get
 
 “Lowest hanging fruit”
 
