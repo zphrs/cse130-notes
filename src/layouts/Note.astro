@@ -8,7 +8,6 @@ interface Props {
   }
 }
 import Layout from "./Layout.astro"
-import type { ZodOptional, ZodString } from "astro/zod"
 // import { slide } from "astro:transitions"
 const { frontmatter } = Astro.props
 const { title, date: dateString, nextNote, prevNote } = frontmatter

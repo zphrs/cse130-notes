@@ -89,10 +89,12 @@ const lines = desc.split("\n")
         transform 0.2s ease,
         opacity 0.2s ease-in-out;
       transform-origin: 10% 0%;
+      pointer-events: none;
     }
     a:hover .desc {
       transform: scale(1);
       opacity: 1;
+      pointer-events: all;
     }
   </style>
 </a>

@@ -11,7 +11,7 @@ import HeaderTree from "../../components/HeaderTree.astro"
   <ul class='headings'>
     {
       allPosts.map(async post => {
-        const { headings, Content } = await post.render()
+        const { headings } = await post.render()
         headings.forEach(heading => {
           heading.text = heading.text.trim()
         })
