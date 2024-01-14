@@ -21,22 +21,39 @@ Value = Read(name) - Get value of name
 
 #### Memory Properties
 
-Volatility - Whether the memory needs power to be applied consistently (span of seconds) in order to remember.
+##### Volatility
 
-Abundance - fewer bits as we move upwards from Tape through HDD, SSD, DRAM, and Caches to Registers
+Whether the memory needs power to be applied consistently (span of seconds) in order to remember.
 
-Cost - More expensive as we move upwards in terms of $/byte
+##### Abundance
 
-Granularity - the sizes of the values which get requested
+fewer bits as we move upwards from Tape through HDD, SSD, DRAM, and Caches to Registers
 
-Performance:
+##### Cost
 
-- Bandwidth - memory/time
-- Latency - Time until memory
+More expensive as we move upwards in terms of $/byte
 
-Synchronous - One action at a time
-Asynchronous - Many actions at a time
-If sync on reads and async on writes then it would be better to optimize read speeds
+##### Granularity
+
+the sizes of the values which get requested
+
+#### Performance
+
+##### Bandwidth
+
+memory/time
+
+##### Latency
+
+Time until memory
+
+##### Synchronous
+
+One action at a time
+
+##### Asynchronous
+
+Many actions at a time
 
 ## Compute
 
