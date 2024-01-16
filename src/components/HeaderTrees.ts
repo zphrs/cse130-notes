@@ -15,7 +15,7 @@ export function headersToTree(
     {
       text: title,
       slug: "",
-      depth: 1,
+      depth: 0,
       blurb: "",
       children: [],
     },

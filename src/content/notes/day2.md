@@ -5,6 +5,8 @@ nextNote: ../../notes/day3/
 prevNote: ""
 ---
 
+# Day 2 - Complexity
+
 ## Issues of Complexity
 
 ### Emergent Properties

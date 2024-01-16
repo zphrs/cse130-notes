@@ -68,7 +68,7 @@ let anim = {
           <span class='prev'>← prev note</span>
         )
       }
-      <a class='all' href='/notes/'>all notes</a>
+      <a class='all' href='/cse130-notes/notes/'>all notes</a>
 
       {
         nextNote ? (
@@ -82,7 +82,6 @@ let anim = {
     </div>
   </aside>
   <main transition:animate={anim}>
-    <h1>{title}</h1>
     <slot />
   </main>
 </Layout>

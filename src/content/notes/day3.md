@@ -1,9 +1,13 @@
 ---
 nextNote: ""
 prevNote: "../day2/"
-title: "Day 3"
+title: "Day 3 - Memory"
 date: 2024-01-12
 ---
+
+# Day 3 - Memory
+
+There are three possible functions which a computer might do, [store](#store), [compute](#compute), and [communicate](#communicate).
 
 ## Store
 

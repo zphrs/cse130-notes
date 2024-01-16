@@ -14,7 +14,7 @@ const { tree, postSlug } = Astro.props
     <li class={`depth-${tree.depth}`}>
       <HeaderPreview
         title={tree.text}
-        href={`/notes/${postSlug}/#${tree.slug}`}
+        href={`/cse130-notes/notes/${postSlug}/#${tree.slug}`}
         desc={tree.blurb}
       >
         {tree.text}
@@ -26,7 +26,7 @@ const { tree, postSlug } = Astro.props
         <summary>
           <HeaderPreview
             title={tree.text}
-            href={`/notes/${postSlug}/#${tree.slug}`}
+            href={`/cse130-notes/notes/${postSlug}/#${tree.slug}`}
             desc={tree.blurb}
           >
             {tree.text}

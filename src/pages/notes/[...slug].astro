@@ -14,6 +14,6 @@ const { entry } = Astro.props
 const { Content } = await entry.render()
 ---
 
-<Note frontmatter={entry.data}>
+<Note frontmatter={entry.data} transition:animate='slide'>
   <Content />
 </Note>
