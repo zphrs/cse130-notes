@@ -12,21 +12,18 @@ const lines = desc.split("\n")
 <script>
   const links = document.querySelectorAll("a.header-preview")
   links.forEach(link => {
+    link.addEventListener("pointerover", e => {
+      if (!link.classList.contains("visible")) {
+        e.preventDefault()
+        link.classList.add("visible")
+        // stop propagation of the click event
+        e.stopPropagation()
+      }
+    })
     link.addEventListener("click", e => {
       if (!link.classList.contains("visible")) {
         e.preventDefault()
         link.classList.add("visible")
-        // add pointerleave event to remove the visible class
-        window.addEventListener(
-          "pointerout",
-          e => {
-            if (e.target === link) return
-            setTimeout(() => {
-              link.classList.remove("visible")
-            }, 100)
-          },
-          { once: true }
-        )
         // stop propagation of the click event
         e.stopPropagation()
       }
@@ -36,29 +33,41 @@ const lines = desc.split("\n")
   links.forEach(link => {
     link.addEventListener("pointerover", ev => {
       const e = ev as PointerEvent
-      if (e.pointerType === "mouse") link.classList.add("visible")
+      // if it's a touch event, don't add the class
+      if (e.button !== -1) {
+        return
+      }
+      // check if button is pressed
+      if (e.buttons !== 0) {
+        return
+      }
+      link.classList.add("visible")
     })
-    link.addEventListener("pointerout", ev => {
+    window.addEventListener("pointerout", ev => {
       const e = ev as PointerEvent
-      if (e.pointerType === "mouse") link.classList.remove("visible")
+      // if target is link or any of its children, don't remove the class
+      if (link.contains(e.target as Node)) {
+        return
+      }
+      link.classList.remove("visible")
     })
   })
   const buttons = document.querySelectorAll("a.header-preview button")
   buttons.forEach(button => {
     button.addEventListener("click", e => {
       e.preventDefault()
-      const link = button.closest("a.header-preview")
+      // stop propagation of the click event
+      e.stopPropagation()
+      const link = button.parentElement?.parentElement?.parentElement
       link!.classList.remove("visible")
       // add class close
       link!.classList.add("close")
-      // listen to pointerout events to remove the close class
-      link!.addEventListener(
-        "pointerleave",
-        () => {
-          link!.classList.remove("close")
-        },
-        { once: true }
-      )
+      // listen to window pointerup event
+      const listener = () => {
+        link!.classList.remove("close")
+        window.removeEventListener("pointerout", listener)
+      }
+      window.addEventListener("pointerout", listener)
     })
   })
 </script>
@@ -66,8 +75,7 @@ const lines = desc.split("\n")
 <a {href} class='header-preview'>
   <span><slot /></span>
   <span class='desc'>
-    <button>✕</button>
-    <header>{title}</header>
+    <header>{title} <button>✕</button></header>
     {desc && <hr />}
     {desc && lines.map(line => (line ? <p>{line}</p> : ""))}
   </span>
@@ -128,13 +136,20 @@ const lines = desc.split("\n")
 
     button {
       position: absolute;
-      top: 0.25rem;
-      right: 0.25rem;
+      top: 0rem;
+      right: -1.25rem;
+      width: 24px;
+      height: 24px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background-color: var(--gray-10);
       border: 1px solid var(--gray-50);
       border-radius: 0.25rem;
+      color: var(--gray-50);
       padding: 0.25rem;
-      font-size: 0.8em;
+      font-size: 1.2em;
       cursor: pointer;
       z-index: 2;
     }
