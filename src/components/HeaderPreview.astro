@@ -74,9 +74,9 @@ const lines = desc.split("\n")
 
 <a {href} class='header-preview'>
   <span><slot /></span>
-  <span class='desc'>
-    <header>{title} <button>✕</button></header>
-    {desc && <hr />}
+  <span class={"desc" + (!desc ? " empty" : "")}>
+    <header>{title} <button>✕</button> {desc && <hr />}</header>
+
     {desc && lines.map(line => (line ? <p>{line}</p> : ""))}
   </span>
 
@@ -116,42 +116,61 @@ const lines = desc.split("\n")
     .desc header {
       background-color: var(--gray-10);
       position: sticky;
+      color: var(--violet-70);
       top: -0.25rem;
-      padding: 0;
-      padding-bottom: 1rem;
+      margin-right: -1.5rem;
+      margin-left: -0.25rem;
+      margin-top: -0.25rem;
+      padding: 0.25rem;
       font-weight: bold;
       font-size: 1.1em;
-      padding-bottom: 0.25rem;
-      padding-top: 0.25rem;
+      padding-bottom: 0.5rem;
+      padding-top: 0.5rem;
+    }
+    .desc header:hover {
+      text-decoration: underline;
     }
 
     hr {
       margin: 0;
-      position: sticky;
-      top: 1.25rem;
+      position: absolute;
+      bottom: 0px;
+      width: calc(100% - 0.5rem);
       border: 1px solid var(--seafoam-50);
       margin-top: 0.25rem;
-      margin-right: -1.25rem;
     }
 
     button {
       position: absolute;
-      top: 0rem;
-      right: -1.25rem;
+      top: 0.25rem;
+      right: 0.125rem;
       width: 24px;
       height: 24px;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: var(--gray-10);
-      border: 1px solid var(--gray-50);
+      background-color: transparent;
+      /* border: 1px solid var(--gray-50); */
+      border: none;
       border-radius: 0.25rem;
-      color: var(--gray-50);
+      color: var(--gray-80);
       padding: 0.25rem;
       font-size: 1.2em;
       cursor: pointer;
       z-index: 2;
+    }
+
+    .desc.empty button {
+      top: 0.5rem;
+    }
+
+    button:hover {
+      background-color: var(--gray-20);
+    }
+
+    button:active {
+      background-color: var(--gray-30);
     }
 
     a.close button {
@@ -160,13 +179,15 @@ const lines = desc.split("\n")
 
     .desc {
       width: max(13rem, 100%);
+      opacity: 0.5;
       max-height: 40vh;
       overflow: scroll;
       padding: 0.25rem;
       border-radius: 0.25rem;
       font-size: 0.8em;
-      background-color: var(--gray-10);
-      border: 1px solid var(--gray-50);
+      background-color: rgb(var(--gray-10-rgb), 0.5);
+      backdrop-filter: blur(0.5rem);
+      border: 1px solid var(--gray-20);
       transform: scale(0.7);
       position: absolute;
       top: -0.1rem;
