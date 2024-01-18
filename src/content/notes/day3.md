@@ -1,5 +1,5 @@
 ---
-nextNote: ""
+nextNote: "../day4/"
 prevNote: "../day2/"
 title: "Day 3 - Memory"
 date: 2024-01-12
