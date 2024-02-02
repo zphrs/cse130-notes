@@ -262,6 +262,14 @@ const { title } = Astro.props
         outline: 1px solid currentColor;
         border-radius: 0.25rem;
       }
+
+      code {
+        font-family: "Fira Code", monospace;
+      }
+      pre:has(code) {
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+      }
     </style>
   </body>
 </html>

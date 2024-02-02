@@ -1,11 +1,11 @@
 ---
 nextNote: ""
 prevNote: "../day3/"
-title: "Day 4 - Interpreters"
+title: "Day 4 - Interpreters/Comm Links"
 date: 2024-01-17
 ---
 
-# Day 4 - Interpreters/Communications Links
+# Day 4 - Interpreters/Comm Links
 
 Interpreters execute instructions and occasionally sends out messages using communication links.
 
@@ -59,7 +59,7 @@ This creates layers of interpreters.
 - Do either what was asked or do nothing
 - Half-completed tasks are not allowed
 
-## Communication Links - Communicate
+## Comm Links - Communicate
 
 ### List of Examples
 
