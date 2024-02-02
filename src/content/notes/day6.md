@@ -1,5 +1,5 @@
 ---
-nextNote: "../day7/"
+nextNote: "../day8/"
 prevNote: "../day5/"
 title: "Day 6 - Regex"
 date: 2024-01-22
