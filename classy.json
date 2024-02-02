@@ -1,7 +1,7 @@
 {
   "name": "by https://github.com/el-angel/theme-editor",
   "colors": {
-    "editor.background": "#040421",
+    "editor.background": "#191c1a",
     "editor.foreground": "#e9eae4",
     "foreground": "#CFD3FF",
     "errorForeground": "#F58F53",
@@ -204,7 +204,8 @@
         "string",
         "meta.property-value.css",
         "entity.other.attribute-name.class.css",
-        "keyword.other"
+        "keyword.other",
+        "punctuation.definition.string"
       ],
       "settings": {
         "foreground": "#ffd140"
@@ -223,7 +224,8 @@
         "keyword.operator",
         "keyword.control",
         "storage",
-        "variable.language"
+        "variable.language",
+        "punctuation.definition.directive"
       ],
       "settings": {
         "foreground": "#fff4ba"

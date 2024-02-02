@@ -1,8 +1,8 @@
 ---
-nextNote: ""
-prevNote: "../day4/"
+nextNote: "../day7/"
+prevNote: "../day5/"
 title: "Day 6 - Regex"
-date: 2024-01-17
+date: 2024-01-22
 ---
 
 # Day 6 - Regex
@@ -52,6 +52,10 @@ If `regex == "([a-z]+) ([0-9]+)"` then `nmatch` should be 3.
 
 if `string == "hello 123"`, then:
 
-- `pmatch[0]` is the entire match `hello 123`
+- `pmatch[0]` is the entire match: `hello 123`
 - `match[1]` is `hello`
 - `pmatch[2]` is `123`
+
+### Return value
+
+0 for success, error code for failure. Can call `regerror()` to convert the error code to a string.

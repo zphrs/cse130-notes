@@ -23,13 +23,15 @@ When something scales differently compared to another part of the system
 
 ### Tradeoffs
 
+---
+
 Ex. Time vs Memory
 
 ## Complexity Definitions
 
 Large number of components with a large number of interconnections which are not uniformly organized.
 
-If there are a lot of irregularities and/or it takes many words to describe the system then it’s complex.
+If there are a lot of irregularities and/or it takes many words to describe the system.
 
 ## Sources of Complexity
 
@@ -51,11 +53,14 @@ The better the system gets the harder future potential gains get
 
 ### Modularity
 
-Break a big problem into smaller pieces. Decreases debugging time because once you find which “neighborhood” is responsible for the bug, that “neighborhood” is much smaller than the entire system.
+Break a big problem into smaller pieces.
 
-Reduces number of components and interactions between different parts of the codebase
+---
 
-Allows for swapping out modules/easy upgrades/rewrites within a singular module
+- Reduces number of components and interactions between different parts of the codebase
+- Allows for swapping out modules/easy upgrades/rewrites within a singular module
+
+Decreases debugging time because once you find which “neighborhood” is responsible for the bug, that “neighborhood” is much smaller than the entire system.
 
 ### Abstraction
 

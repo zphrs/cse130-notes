@@ -7,7 +7,7 @@ date: 2024-01-12
 
 # Day 3 - Memory
 
-There are three possible functions which a computer might do, [store](#store), [compute](#compute), and [communicate](#communicate).
+There are three possible functions which a computer might do, store, compute, and communicate.
 
 ## Store
 
