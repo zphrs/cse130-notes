@@ -2,7 +2,7 @@
 nextNote: "../day6/"
 prevNote: "../day4/"
 title: "Day 5 - File I/O"
-date: 2024-01-17
+date: 2024-01-19
 ---
 
 # Day 5 - File I/O
