@@ -1,6 +1,6 @@
 ---
 nextNote: "../day9/"
-prevNote: "../day7/"
+prevNote: "../day6/"
 title: "Day 8 - Client-Server Model"
 date: 2024-01-26
 ---
