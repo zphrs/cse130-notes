@@ -1,7 +1,7 @@
 ---
 title: Day 2 - Complexity
 date: 2024-01-10
-nextNote: ../../notes/day3/
+nextNote: ../../notes/day03/
 prevNote: ""
 ---
 

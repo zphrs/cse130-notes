@@ -1,6 +1,6 @@
 ---
-nextNote: "../day5/"
-prevNote: "../day3/"
+nextNote: "../day05/"
+prevNote: "../day03/"
 title: "Day 4 - Interpreters/Comm Links"
 date: 2024-01-17
 ---

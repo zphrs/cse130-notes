@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.4.1",
+    "@astrojs/mdx": "^2.1.1",
     "@astropub/md": "^0.4.0",
     "astro": "^4.1.2",
     "typescript": "^5.3.3"
@@ -20,6 +21,7 @@
   "devDependencies": {
     "@types/react": "^18.2.47",
     "gh-pages": "^6.1.1",
+    "sharp": "^0.33.2",
     "zod": "^3.22.4"
   }
 }

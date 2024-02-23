@@ -64,6 +64,15 @@ const { title } = Astro.props
     </script>
     <slot />
     <style is:global>
+      img {
+        margin: auto;
+        display: block;
+        max-width: 100%;
+        height: auto;
+        background-color: var(--gray-10);
+        border-radius: 0.5rem;
+        aspect-ratio: attr(width) / attr(height);
+      }
       :root {
         --violet-1: #02001f;
         --violet-2: #03002e;

@@ -1,6 +1,6 @@
 ---
-nextNote: ""
-prevNote: "../day8/"
+nextNote: "../day11/"
+prevNote: "../day08/"
 title: "Day 9 - RPCs"
 date: 2024-01-29
 ---

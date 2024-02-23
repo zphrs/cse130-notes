@@ -1,6 +1,6 @@
 ---
-nextNote: "../day6/"
-prevNote: "../day4/"
+nextNote: "../day06/"
+prevNote: "../day04/"
 title: "Day 5 - File I/O"
 date: 2024-01-19
 ---

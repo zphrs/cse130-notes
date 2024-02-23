@@ -1,6 +1,6 @@
 ---
-nextNote: "../day4/"
-prevNote: "../day2/"
+nextNote: "../day04/"
+prevNote: "../day02/"
 title: "Day 3 - Memory"
 date: 2024-01-12
 ---
