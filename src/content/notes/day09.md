@@ -2,7 +2,7 @@
 nextNote: "../day11/"
 prevNote: "../day08/"
 title: "Day 9 - RPCs"
-date: 2024-01-28
+date: 2024-01-29
 ---
 
 # Day 9 - RPCs
