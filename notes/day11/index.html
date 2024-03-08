@@ -178,16 +178,16 @@ next class →
 <h2 id="your-http-server">Your HTTP Server</h2>
 <h2 id="socketshelper-functions">Sockets/Helper Functions</h2>
 <h3 id="normal-socket-procedure">Normal Socket Procedure</h3>
-<h4 id="listener_socket--socket"><code>listener_socket = socket(...)</code></h4>
+<p><code>listener_socket = socket(...)</code></p>
 <p>Creates a listener socket</p>
-<h4 id="bindlistener_socket"><code>bind(listener_socket, ...)</code></h4>
+<h4 id="bindls"><code>bind(ls, ...)</code></h4>
 <p>Binds the listener socket to a port</p>
-<h4 id="listenlistener_socket"><code>listen(listener_socket, ...)</code></h4>
+<h4 id="listenls"><code>listen(ls, ...)</code></h4>
 <p>Starts listening for incoming connections</p>
-<h4 id="acceptlistener_socket"><code>accept(listener_socket, ...)</code></h4>
-<p><code>connection_fd = accept(listener_socket, ...)</code></p>
+<h4 id="acceptls"><code>accept(ls, ...)</code></h4>
+<p><code>fd = accept(ls, ...)</code></p>
 <p>Accepts a new connection, returning a file descriptor to that connection</p>
-<h4 id="setsockoptconnection_fd">setsockopt(connection_fd, …)</h4>
+<h4 id="setsockoptfd">setsockopt(fd, …)</h4>
 <p>Sets options for the connection, including timeouts (will return a EAGAIN error if the connection times out)</p>
 <h4 id="typical-ordering">Typical Ordering</h4>
 <ol>

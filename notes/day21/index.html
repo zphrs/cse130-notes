@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="description" content="Astro description"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/svg+xml" href="/cse130-notes/favicon.svg"><meta name="generator" content="Astro v4.1.2"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Comfortaa:wght@700&family=Fira+Code&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Comfortaa:wght@700&family=Fira+Code&display=swap"></noscript><title>Day 12 - Virtualization</title><style>@keyframes slideInBack{0%{transform:translate(-100%);opacity:0}to{transform:translate(0);opacity:1}}@keyframes slideOutBack{0%{transform:translate(0);opacity:1}to{transform:translate(100%);opacity:0}}@keyframes slideInForward{0%{transform:translate(100%);opacity:0}to{transform:translate(0);opacity:1}}@keyframes slideOutForward{0%{transform:translate(0);opacity:1}to{transform:translate(-100%);opacity:0}}.date[data-astro-cid-v5yihett]{font-family:Atkinson Hyperlegible;margin-bottom:.5rem;display:block;color:var(--gray-60)}.next-prev[data-astro-cid-v5yihett]{display:grid;justify-content:space-between;grid-template-columns:1fr 1fr 1fr;margin:1rem 0;color:var(--gray-60)}.next[data-astro-cid-v5yihett]{text-align:right;grid-column:3 / 4}.prev[data-astro-cid-v5yihett]{grid-column:1 / 2}.all[data-astro-cid-v5yihett]{text-align:center;grid-column:2 / 3}aside[data-astro-cid-v5yihett]{background-color:var(--gray-10);padding:1rem;max-width:800px;margin:0 auto}@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0}}@keyframes astroFadeOut{to{opacity:0}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="description" content="Astro description"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/svg+xml" href="/cse130-notes/favicon.svg"><meta name="generator" content="Astro v4.1.2"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Comfortaa:wght@700&family=Fira+Code&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Comfortaa:wght@700&family=Fira+Code&display=swap"></noscript><title>Day 21 - Mutexless</title><style>@keyframes slideInBack{0%{transform:translate(-100%);opacity:0}to{transform:translate(0);opacity:1}}@keyframes slideOutBack{0%{transform:translate(0);opacity:1}to{transform:translate(100%);opacity:0}}@keyframes slideInForward{0%{transform:translate(100%);opacity:0}to{transform:translate(0);opacity:1}}@keyframes slideOutForward{0%{transform:translate(0);opacity:1}to{transform:translate(-100%);opacity:0}}.date[data-astro-cid-v5yihett]{font-family:Atkinson Hyperlegible;margin-bottom:.5rem;display:block;color:var(--gray-60)}.next-prev[data-astro-cid-v5yihett]{display:grid;justify-content:space-between;grid-template-columns:1fr 1fr 1fr;margin:1rem 0;color:var(--gray-60)}.next[data-astro-cid-v5yihett]{text-align:right;grid-column:3 / 4}.prev[data-astro-cid-v5yihett]{grid-column:1 / 2}.all[data-astro-cid-v5yihett]{text-align:center;grid-column:2 / 3}aside[data-astro-cid-v5yihett]{background-color:var(--gray-10);padding:1rem;max-width:800px;margin:0 auto}@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0}}@keyframes astroFadeOut{to{opacity:0}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
 </style>
 <link rel="stylesheet" href="/cse130-notes/_astro/_slug_.5YG6IZmR.css" /><script type="module" src="/cse130-notes/_astro/hoisted.Ta9NCA9F.js"></script><style>[data-astro-transition-scope="astro-dleqrbkn-1"] { view-transition-name: astro-dleqrbkn-1; }@layer astro { ::view-transition-old(astro-dleqrbkn-1) { 
 	animation-duration: 90ms, 220ms;
@@ -170,39 +170,112 @@
 	animation-duration: 0.2s;
 	animation-timing-function: ease;
 	animation-fill-mode: forwards;
-	animation-name: slideOutBack; }</style></head> <body>   <aside data-astro-cid-v5yihett data-astro-transition-scope="astro-pgxxj7dk-2"> <span class="date" data-astro-cid-v5yihett data-astro-transition-scope="astro-jcuwcms7-3">February 4, 2024</span> <h1 data-astro-cid-v5yihett data-astro-transition-scope="astro-spzw3xwm-4">Day 12 - Virtualization</h1> <div class="next-prev" data-astro-cid-v5yihett> <a class="prev" href="../day11/" data-astro-cid-v5yihett>
+	animation-name: slideOutBack; }</style></head> <body>   <aside data-astro-cid-v5yihett data-astro-transition-scope="astro-pgxxj7dk-2"> <span class="date" data-astro-cid-v5yihett data-astro-transition-scope="astro-jcuwcms7-3">February 27, 2024</span> <h1 data-astro-cid-v5yihett data-astro-transition-scope="astro-spzw3xwm-4">Day 21 - Mutexless</h1> <div class="next-prev" data-astro-cid-v5yihett> <a class="prev" href="../day19/" data-astro-cid-v5yihett>
 ← prev class
-</a> <a class="all" href="/cse130-notes/notes/" data-astro-cid-v5yihett>all notes</a> <a class="next" href="../day13/" data-astro-cid-v5yihett>
+</a> <a class="all" href="/cse130-notes/notes/" data-astro-cid-v5yihett>all notes</a> <a class="next" href="../day19/" data-astro-cid-v5yihett>
 next class →
-</a> </div> </aside> <main data-astro-cid-v5yihett data-astro-transition-scope="astro-q6rtzicy-5">  <p>import Image from “astro”</p>
-<h1 id="day-12---virtualization">Day 12 - Virtualization</h1>
-<p>Client/server good because it forces organization and improves security. (less area of attack)</p>
-<p>Client/server bad because you need many machines to run the server. Maybe virtualization can help? Docker time baby!</p>
-<h2 id="virtualization">Virtualization</h2>
-<p>Is soft modularity</p>
-<p>Three basic techniques:</p>
-<h2 id="multiplexing">Multiplexing</h2>
-<p>One masquerading as many.
-<img alt="One source advertising as many"  src="/cse130-notes/_astro/multiplexing.aPbnmrvn_Z283tal.webp" width="452" height="392" loading="lazy" decoding="async"></p>
-<hr>
-<p>One example is Disk Partitions</p>
-<h2 id="aggregation">Aggregation</h2>
-<p>Multiple masquerading as one.</p>
-<h2 id=""><img alt="many sources pretending to be one"  src="/cse130-notes/_astro/aggregation.OGWPneKb_1XSO2g.webp" width="502" height="428" loading="lazy" decoding="async"></h2>
-<hr>
-<p>One example is RAID</p>
-<h2 id="emulation">Emulation</h2>
-<p>Pretend to be something else.</p>
-<p><img alt="many different sources pretending to be something else"  src="/cse130-notes/_astro/emulation.1O91q5RZ_Z2skfu6.webp" width="472" height="398" loading="lazy" decoding="async"></p>
-<hr>
-<p>One example is a CDN</p>
-<h2 id="virtual-memory">Virtual Memory</h2>
-<p>Gives each process an entire address space, but then behind the scenes coordinates with the OS (and hardware) to share the physical memory.</p>
-<p>This lets multiple applications run at the same time without interfering with each other. (unless the entire computer runs out of memory)</p>
-<h3 id="comm-link">Comm Link</h3>
-<h4 id="bounded-buffers">Bounded Buffers</h4>
-<p>An OS provides bounded buffers which allow threads to communicate via send/receive.</p>
-<h3 id="syncing-bounded-buffers">Syncing Bounded Buffers</h3>
-<p>One option is a ring buffer. 2 pointers, one for in, and one for out. If they are equal, the buffer is empty. If the in pointer is greater than the out pointer then the buffer has items in it.</p>
-<p>However there’s a problem because there’s no way to tell if the buffer is full or empty. So we need to use a counter variable to keep track of the number of items in the buffer.</p>
-<p>However there’s a problem because the <code>++</code> and <code>--</code> operations needed to keep track of the counter is not atomic. So we need to use a mutex to protect the count.</p>  </main>   </body> </html> 
+</a> </div> </aside> <main data-astro-cid-v5yihett data-astro-transition-scope="astro-q6rtzicy-5">  <h1 id="performance">Performance</h1>
+<h2 id="measuring">Measuring</h2>
+<ul>
+<li>Capacity: amount of a resource in a system</li>
+<li>Utilization: percentage of capacity used</li>
+<li>Overhead: how much of a resource is wasted on management (files, viertualization, metadata, etc)</li>
+<li>Useful work: resource spent on actual work (total utilization - overhead)</li>
+</ul>
+<h3 id="overhead">Overhead</h3>
+<p>Usually any work the current level does is useful and all lower levels are overhead.</p>
+<h4 id="examples">Examples</h4>
+<ul>
+<li>In-Memory Hash-Table</li>
+<li>Multi-threaded HTTP Server</li>
+<li>malloc/free/garbage collection</li>
+</ul>
+<h3 id="time-based">Time-based</h3>
+<ul>
+<li>Latency: time between input and result; elapsed time / one action</li>
+<li>Throughput: number of results per second; # actions / time</li>
+</ul>
+<h2 id="pipelining">Pipelining</h2>
+<p>Split operation into multiple individual stages</p>
+<ul>
+<li>Each stage operates independently</li>
+<li>Single request goes through multiple stages</li>
+<li>Different requests may go through different stages</li>
+</ul>
+<p><code>latency_a+b >= latency_a + latency_b</code></p>
+<p><code>throughput_a+b &#x3C;= min(throughput_a, throughput_b) // limited by slowest stage</code></p>
+<p>Pipelines increase throughput by keeping everyone busy. Uses a bounded buffer between stages.</p>
+<h2 id="concurrency">Concurrency</h2>
+<p>Concurrency can reduce latency by running multiple stages/substages in parallel.</p>
+<p>Concurrency can increase throughput by having each stage works on a different request. “assembly line”</p>
+<h2 id="reducing-latency">Reducing Latency</h2>
+<p>It’s difficult and often limited by set rules like the speed of light or the algorithm run time.</p>
+<p>Leverage non-uniformity: reduce latency for some requests (early return, caching)</p>
+<p>Create a fast path: optimize for common cases</p>
+<h3 id="average-latency">Average Latency</h3>
+<p><code>average_latency = (1 - p) * latency + p * fast_latency</code> where <code>p</code> is the frequency of the fast path.</p>
+<h3 id="unintuitive-opt">Unintuitive Opt.</h3>
+<p>1980s/1990s silicon chip databases. Size of files + slowness of trans-atlantic cables meant that an engineer took a hand tape on 747 to Japan</p>
+<p>Event Horizon Telescope: 5 petabytes of data which were then shipped to a central location for processing on 800 computers.</p>
+<p>”Never underestimate the bandwidth of a station wagon full of tapes hurtling down the highway.” - Andrew Tanenbaum</p>
+<h3 id="amdahls-law">Amdahl’s Law</h3>
+<p>Law of diminishing returns</p>
+<p>Q: How much will an optimization improves performance if only one stage of the system is affected?</p>
+<p>P = portion of time previously spent in the stage
+S = speedup of the stage</p>
+<p><img alt="1 over 1 minus P plus P divided by S"  src="/cse130-notes/_astro/amdhal.JVyk3BDC_vc5iU.webp" width="400" height="236" loading="lazy" decoding="async"></p>
+<p>This says that as the speedup of a stage increases, the overall speedup approaches:</p>
+<p><code>1 / (1 - P)</code></p>
+<h2 id="design-for-perf">Design for Perf.</h2>
+<p>How do we make a system run “better”?</p>
+<p>Build <strong>then</strong> measure (no premature optimization)</p>
+<ol>
+<li>Measure the system to see if it needs to be faster</li>
+<li>Measure again to find the bottleneck</li>
+<li>Predict the impact of removing bottleneck
+<ol>
+<li>Removing a bottleneck doesn’t help: reconsider design?</li>
+<li>Removing a bottleneck helps: find ways to remove bottleneck</li>
+</ol>
+</li>
+<li>Implement new solution and repeat</li>
+</ol>
+<h4 id="other-sols">Other Sols.</h4>
+<p>Parallelization: split work into multiple independent tasks</p>
+<p>Speculation: Predict what work might be done and do it before it’s needed. Ex: hovering on links prefetches the linked page.</p>
+<h3 id="hard-disk-ex">Hard Disk Ex.</h3>
+<p>Batching: handle requests as a group o amortize fixed overhead (send egress)</p>
+<p>Dallying: delay a request. Maybe it won’t be needed/can be cached on ram instead of ever going to disk.</p>
+<p>Speculation: Easier to read the data at address N+1 immediately after reading N. (assumes sequential read is likely)</p>
+<h3 id="queueingoverload">Queueing/Overload</h3>
+<p>What about bursts?</p>
+<p>What if some stages are different lengths?
+(or different lenghts for different requests)</p>
+<p>What about incommensurate scaling of stages? (see day 2)</p>
+<p>Incoming request rate > average throughput -> queue overload -> blocked requests -> increasing latency</p>
+<h2 id="theory-vs-practice">Theory vs. Practice</h2>
+<p>Make assumptions and use Amdhal’s law to predict potential speedup.</p>
+<p>Then measure to see if the assumptions are correct!</p>
+<h3 id="measuring-perf">Measuring perf</h3>
+<ul>
+<li>Choose a system</li>
+<li>Choose a workload</li>
+</ul>
+<h3 id="workload">Workload</h3>
+<p>What about a real world workload?</p>
+<p>Requires having a real system to measure, measurement only applies to the workload of today, and measuring performance may change system behavior.</p>
+<p>You can also use a simulated system and benchmarks along with real world traces.</p>
+<h2 id="system">System</h2>
+<p>If you alter system calls and introduce code to count types of instructions then the system runs slower.</p>
+<p>The other option is to simulate the system and measure the simulation. You build a model at one or more layers and then run a workload through the model, not the real system.</p>
+<p>Can simulate CPU, disk, and even time!</p>
+<p>Unfortunately, a model will always be less accurate than the real system.</p>
+<h3 id="benchmarks">Benchmarks</h3>
+<p>Create a sythetic workload based on a real workload.</p>
+<p>Standard workloads: ex. compiling the linux kernel, TPC database benchmarks</p>
+<p>May involve forcing randomness into delay between requests/size of requests and any other parameters that might affect the system.</p>
+<p>What make a benchmark good?</p>
+<p>GIGO: Bad benchmark results in bad real world performance measurement.</p>
+<p>Run real workload and benchmark through same system. If they have similar performance then the benchmark is probably good. If they have different performance then the benchmark is probably bad.</p>
+<p>Benchmarks and real workload should be tested on multiple systems to see if the results are consistent. Otherwise the benchmark might be good for one system but not another.</p>
+<p>For a benchmark to be useful, it must <strong>predict</strong> the performance of real systems on real workloads.</p>  </main>   </body> </html> 
