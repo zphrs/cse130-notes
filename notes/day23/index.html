@@ -210,6 +210,7 @@ next class →
 <p>The CPU and the OS collaborate to manage data access. The OS does the translation from virtual to physical memory for memory lookups. Then the CPU manages everything to do with the memory cache. For disk lookups the OS manages the disk cache.</p>
 <h2 id="page-replacement">Page Replacement</h2>
 <p>Best possible algorithm is to always replace the page that will be used furthest in the future. This is impossible to know, so we use approximations based on past access patterns. Plenty of research has been done and is still being done on this topic.</p>
+<p>Note: Sometimes an <strong>OPT</strong>imal algorithm is used to compare other algorithms to understand how much optimization is possible and see if it’s worth it to further optimize.</p>
 <h3 id="fifo">FIFO</h3>
 <h3 id="high-level">High Level</h3>
 <p>A page only needs to be written to disk if it was changed so keep track of whether a specific page was changed (i.e. dirtied). One bit per page is enough to track this.</p>

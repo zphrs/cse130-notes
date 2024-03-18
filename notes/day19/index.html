@@ -179,7 +179,7 @@ next class →
 <pre class="astro-code by https://github.com/el-angel/theme-editor" style="background-color:#E5E6E2;color:#19191A; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#CE9409">#include</span><span style="color:#846905"> &#x3C;unistd.h></span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#CE9409">int</span><span style="color:#345348"> getopt</span><span style="color:#313233">(</span><span style="color:#CE9409">int</span><span style="color:#2D27A4"> argc</span><span style="color:#313233">, </span><span style="color:#CE9409">char</span><span style="color:#CE9409"> *const</span><span style="color:#2D27A4"> argv</span><span style="color:#CE9409">[]</span><span style="color:#313233">, </span><span style="color:#CE9409">const</span><span style="color:#CE9409"> char</span><span style="color:#CE9409"> *</span><span style="color:#2D27A4">optstring</span><span style="color:#313233">);</span></span></code></pre>
-<p>Example optstring for server arguments: <code>"t:</code></p>
+<p>Example optstring for server arguments: <code>"t:"</code></p>
 <h3 id="returns">Returns</h3>
 <ul>
 <li><code>-1</code> when there are no more options - argv == null</li>
@@ -190,4 +190,10 @@ next class →
 <p><code>opterror</code> - enables or disables error messages.</p>
 <p><code>?</code> from getopt means there was an error and <code>optopt</code> is the character of the option that caused the error.</p>
 <h3 id="optind"><code>optind</code></h3>
-<p><code>optind</code> is the index of the next element to be processed in argv or NULL if there are no non option arguments.</p>  </main>   </body> </html> 
+<p><code>optind</code> is the index of the next element to be processed in argv or NULL if there are no non option arguments. It will rearrange <code>argv</code> so that all non option arguments are at the end.</p>
+<h4 id="example">Example</h4>
+<p>The snippet below is from Quiz 6.</p>
+<pre class="astro-code by https://github.com/el-angel/theme-editor" style="background-color:#E5E6E2;color:#19191A; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6E9D87">// with input prog A -t 1 B</span></span>
+<span class="line"><span style="color:#CE9409">while</span><span style="color:#313233"> (</span><span style="color:#345348">getopt</span><span style="color:#313233">(argc, argv, </span><span style="color:#846905">"t:"</span><span style="color:#313233">) </span><span style="color:#CE9409">!=</span><span style="color:#CE9409"> -</span><span style="color:#413900">1</span><span style="color:#313233">) {}; </span></span>
+<span class="line"><span style="color:#6E9D87">// getopt rearranges argv to prog -t 1 A B by the time it returns -1</span></span>
+<span class="line"><span style="color:#345348">printf</span><span style="color:#313233">(</span><span style="color:#846905">"</span><span style="color:#413900">%d\n</span><span style="color:#846905">"</span><span style="color:#313233">, optind);</span><span style="color:#6E9D87"> // 3</span></span></code></pre>  </main>   </body> </html> 
