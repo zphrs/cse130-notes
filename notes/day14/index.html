@@ -178,6 +178,8 @@
 <hr>
 <p>Doesn’t necessarily mean a bug, might just mean a different result.</p>
 <p>That said, race conditions are difficult to diagnose because they are based on random timings.</p>
+<h3 id="data-race">Data Race</h3>
+<p>Strict definition: when at least two threads access a shared memory value and at least one of the accesses is a write.</p>
 <h2 id="mutual-exclusion-mutex">Mutual Exclusion (Mutex)</h2>
 <p>Ensures that only one thread is inside a critical section at a time (where the code reads and manipulates a shared variable).</p>
 <p>Shared variables can even include variables which are shared between parallel calls to the same function.</p>
@@ -217,4 +219,45 @@ Counting: 0 to ∞</p>
 <h3 id="how-to-use-2">How to Use</h3>
 <p>Use to avoid busy waiting. An example is to have a semaphore for when a buffer is full (initialized to N) and another for when a buffer is empty (initialized to 0). Lastly use a binary semaphore to protect the buffer (inc/dec).</p>
 <h3 id="binary-semaphore-vs-mutex">Binary Semaphore vs Mutex</h3>
-<p>A binary semaphore can be used to implement a mutex but a mutex cannot be used to implement a binary semaphore. A mutex must be released by the same thread that acquired it while a binary semaphore can be released by any thread.</p>  </main>   </body> </html> 
+<p>A binary semaphore can be used to implement a mutex but a mutex cannot be used to implement a binary semaphore. A mutex must be released by the same thread that acquired it while a binary semaphore can be released by any thread.</p>
+<h2 id="proving-outcomes">Proving Outcomes</h2>
+<ol>
+<li>Choose a vocabulary. Ex:</li>
+</ol>
+<ul>
+<li>L_i - Load by thread i</li>
+<li>A_i - add by thread i</li>
+<li>S_i - store by thread i</li>
+</ul>
+<ol start="2">
+<li>Find an order of operations that shows the outcome you are trying to prove.</li>
+</ol>
+<h3 id="example">Example</h3>
+<p>For three producers:</p>
+<pre class="astro-code by https://github.com/el-angel/theme-editor" style="background-color:#E5E6E2;color:#19191A; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#CE9409">int</span><span style="color:#313233"> in </span><span style="color:#CE9409">=</span><span style="color:#413900"> 0</span><span style="color:#313233">;</span></span>
+<span class="line"><span style="color:#6E9D87">// sequential</span></span>
+<span class="line"><span style="color:#313233">in </span><span style="color:#CE9409">==</span><span style="color:#413900"> 0</span><span style="color:#313233">; </span></span>
+<span class="line"><span style="color:#313233">L1, A1, S1, </span></span>
+<span class="line"><span style="color:#313233">L2, A2, S2, </span></span>
+<span class="line"><span style="color:#313233">L3, A3, S3; </span></span>
+<span class="line"><span style="color:#313233">out </span><span style="color:#CE9409">==</span><span style="color:#413900"> 3</span></span>
+<span class="line"><span style="color:#6E9D87">// L1 and L2 interleaved</span></span>
+<span class="line"><span style="color:#CE9409">-</span><span style="color:#313233"> in </span><span style="color:#CE9409">==</span><span style="color:#413900"> 0</span><span style="color:#313233">; </span></span>
+<span class="line"><span style="color:#313233">L1, L2, </span></span>
+<span class="line"><span style="color:#313233">A2, A1, </span></span>
+<span class="line"><span style="color:#313233">S1, S2, </span></span>
+<span class="line"><span style="color:#313233">L3, A3, S3; </span></span>
+<span class="line"><span style="color:#313233">out </span><span style="color:#CE9409">==</span><span style="color:#413900"> 2</span><span style="color:#313233"> </span></span>
+<span class="line"><span style="color:#6E9D87">// all three interleaved</span></span>
+<span class="line"><span style="color:#CE9409">-</span><span style="color:#313233"> in </span><span style="color:#CE9409">==</span><span style="color:#413900"> 0</span><span style="color:#313233">; </span></span>
+<span class="line"><span style="color:#313233">L1, L2, L3, </span></span>
+<span class="line"><span style="color:#313233">A1, A2, A3, </span></span>
+<span class="line"><span style="color:#313233">S1, S2, S3; </span></span>
+<span class="line"><span style="color:#313233">in </span><span style="color:#CE9409">==</span><span style="color:#413900"> 1</span><span style="color:#313233">;</span></span>
+<span class="line"><span style="color:#CE9409">-</span><span style="color:#313233"> in </span><span style="color:#CE9409">==</span><span style="color:#413900"> 0</span><span style="color:#313233">; </span></span>
+<span class="line"><span style="color:#313233">L1, A1, </span></span>
+<span class="line"><span style="color:#313233">L2, A2, </span></span>
+<span class="line"><span style="color:#313233">L3, </span></span>
+<span class="line"><span style="color:#313233">S1, S2, </span></span>
+<span class="line"><span style="color:#313233">A3, S3; </span></span>
+<span class="line"><span style="color:#313233">in </span><span style="color:#CE9409">==</span><span style="color:#413900"> 1</span></span></code></pre>  </main>   </body> </html> 
